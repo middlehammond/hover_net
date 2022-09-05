@@ -5,6 +5,9 @@
 cache/
 dataset/
 exp_output/
+temp_img/
+logs/
+pretrained/
 
 # checkpoint paths
 *.npz

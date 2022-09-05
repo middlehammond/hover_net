@@ -84,12 +84,19 @@ class TrainManager(Config):
         target_info = phase_list["target_info"]
         prep_func, prep_kwargs = target_info["viz"]
         dataloader = self._get_datagen(2, mode, target_info["gen"])
+
+        idx = 0
+        if not os.path.exists("temp_img"):
+            os.mkdir("temp_img")
         for batch_data in dataloader:  
             # convert from Tensor to Numpy
             batch_data = {k: v.numpy() for k, v in batch_data.items()}
             viz = prep_func(batch_data, is_batch=True, **prep_kwargs)
             plt.imshow(viz)
-            plt.show()
+            plt.savefig(f"temp_img/{idx}.jpg")
+            idx += 1
+            # plt.imshow(viz)
+            # plt.show()
         self.nr_gpus = -1
         return
 
@@ -187,6 +194,7 @@ class TrainManager(Config):
             # summary_string(net_desc, (3, 270, 270), device='cpu')
 
             pretrained_path = net_info["pretrained"]
+            # pretrained_path = "C:/Users/toom/cu_proj/hover_net/pretrained/ImageNet-ResNet50-Preact_pytorch.tar"
             if pretrained_path is not None:
                 if pretrained_path == -1:
                     # * depend on logging format so may be broken if logging format has been changed
