@@ -94,6 +94,18 @@ class __CoNSeP(__AbstractDataset):
 
         return ann
 
+class __Custom(__AbstractDataset):
+    def load_img(self, path):
+        return cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB)
+
+    def load_ann(self, path, with_type=False):
+        assert not with_type, "Not support"
+        
+        ann_inst = sio.loadmat(path)["inst_map"]
+        ann_inst = ann_inst.astype("int32")
+        ann = np.expand_dims(ann_inst, -1)
+        return ann
+
 
 ####
 def get_dataset(name):
@@ -102,6 +114,7 @@ def get_dataset(name):
         "kumar": lambda: __Kumar(),
         "cpm17": lambda: __CPM17(),
         "consep": lambda: __CoNSeP(),
+        "custom": lambda: __Custom(),
     }
     if name.lower() in name_dict:
         return name_dict[name]()

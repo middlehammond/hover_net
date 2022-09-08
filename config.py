@@ -24,10 +24,10 @@ class Config(object):
         if model_mode not in ["original", "fast"]:
             raise Exception("Must use either `original` or `fast` as model mode")
 
-        nr_type = 5 # number of nuclear types (including background)
+        nr_type = None # number of nuclear types (including background)
 
         # whether to predict the nuclear type, availability depending on dataset!
-        self.type_classification = True
+        self.type_classification = False
 
         # shape information - 
         # below config is for original mode. 
@@ -44,15 +44,15 @@ class Config(object):
             if act_shape != [256,256] or out_shape != [164,164]:
                 raise Exception("If using `fast` mode, input shape must be [256,256] and output shape must be [164,164]")
 
-        self.dataset_name = "consep" # extracts dataset info from dataset.py
+        self.dataset_name = "custom" # extracts dataset info from dataset.py
         self.log_dir = "logs/" # where checkpoints will be saved
 
         # paths to training and validation patches
         self.train_dir_list = [
-            "C:/Users/toom/cu_proj/hover_net/dataset/training_data/consep/consep/train/540x540_164x164"
+            "C:/Users/toom/cuhk-proj/hover_net/dataset/training_data/custom/custom/train/540x540_164x164"
         ]
         self.valid_dir_list = [
-            "C:/Users/toom/cu_proj/hover_net/dataset/training_data/consep/consep/valid/540x540_164x164"
+            "C:/Users/toom/cuhk-proj/hover_net/dataset/training_data/custom/custom/valid/540x540_164x164"
         ]
 
         self.shape_info = {

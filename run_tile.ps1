@@ -1,10 +1,10 @@
 python run_infer.py `
 --gpu='0' `
---nr_types=5 `
+--nr_types=0 `
 --type_info_path=type_info.json `
 --batch_size=8 `
 --model_mode=original `
---model_path=logs/00/net_epoch=34.tar `
+--model_path=logs/00/net_epoch=10.tar `
 --nr_inference_workers=8 `
 --nr_post_proc_workers=12 `
 tile `
