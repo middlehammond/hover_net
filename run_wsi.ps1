@@ -10,6 +10,7 @@ python run_infer.py `
 wsi `
 --input_dir=dataset/sample_wsis/wsi/ `
 --output_dir=dataset/sample_wsis/out/ `
+--cache_path=E://hover_cache/ `
 --input_mask_dir='' `
 --save_thumb `
 --save_mask
